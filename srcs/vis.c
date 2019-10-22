@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:16:36 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 20:13:55 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:25:05 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,5 @@ void		vis_map(t_fdf *fdf, t_coords **coords)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image, 0, 0);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image, 75, 75);
 }

@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:07:46 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 19:13:41 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:21:17 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		main(int argc, char **argv)
 		print_error("Woops, where file ?\n");
 
 	coords = parse_file(&sizes, argv[1]);
+	coords = rerange_coords(coords, sizes);
 	fdf = setup_fdf(sizes);
 	vis_map(fdf, coords);
 	mlx_loop(fdf->mlx);

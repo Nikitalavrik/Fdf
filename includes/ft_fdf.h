@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:03:40 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 19:32:35 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:24:42 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			free_splited(char **splited, int size);
 t_coords		**parse_file(t_coords *sizes, char *filename);
 
 t_fdf			*setup_fdf(t_coords sizes);
+
+t_coords	**rerange_coords(t_coords **coords, t_coords sizes);
 
 void			vis_map(t_fdf *fdf, t_coords **coords);
 
