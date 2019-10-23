@@ -6,19 +6,21 @@
 #    By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/21 15:00:08 by nlavrine          #+#    #+#              #
-#    Updated: 2019/10/22 16:49:34 by nlavrine         ###   ########.fr        #
+#    Updated: 2019/10/23 13:56:07 by nlavrine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC =	main.c	\
-		parse.c	\
-		fdf.c	\
+SRC =	main.c		\
+		parse.c		\
+		fdf.c		\
 		sys_out.c	\
 		error.c		\
 		split.c		\
-		vis.c	\
+		vis.c		\
+		catch_key.c		\
+		rot.c
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -36,7 +38,7 @@ OBJS = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 all: $(NAME) 
 
 $(NAME): $(LIB) $(PRINTF) $(OBJS)
-		@$(CC) $(FLAGS) -framework OpenGL -framework AppKit -lm $(OBJS) $(PRINTF) $(LIB) $(PRINTF) $(MINILIBX) -o $(NAME) 
+		@$(CC) $(FLAGS) -framework OpenGL -framework AppKit -lm $(OBJS) $(PRINTF) $(LIB) $(PRINTF) $(MINILIBX) -o $(NAME)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 		@mkdir -p $(OBJ_DIR)

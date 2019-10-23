@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:16:36 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 20:25:05 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/23 15:51:45 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,19 @@
 // 	return (num > 0 ? num : -num)
 // }
 
-void		plot_pixel(t_fdf *fdf, int x, int y)
+void		plot_pixel(t_fdf *fdf, int x, int y, int color)
 {
 	int pos;
 
-	pos = 0;
-	if (x >= 0 && y >= 0)
+	pos = x + y * WIDTH;
+	if (x >= 0 && y >= 0 && pos < WIDTH * HEIGHT)
 	{
-		pos = x + y * WIDTH;
-		fdf->addr[pos] = 65280;
+		fdf->addr[pos] = color;
 	}
 		
 }
 
-void		bresenham_line(t_fdf *fdf, t_coords coord0, t_coords coord1)
+void		bresenham_line(t_fdf *fdf, t_coords coord0, t_coords coord1, int color)
 {
 	int		x0;
 	int		y0;
@@ -50,15 +49,8 @@ void		bresenham_line(t_fdf *fdf, t_coords coord0, t_coords coord1)
 	error = dx + dy;
 	while (1)
 	{
-		plot_pixel(fdf, x0, y0);
-		if (x0 < 0)
-		{
-			ft_printf("dx = %i dy = %i\n", dx, dy);
-			ft_printf("x0 = %i y0 = %i x1 = %i y1 %i\n",
-			coord0.x, coord0.y, coord1.x, coord1.y);
-			exit(1);
-		}
-		if (x0 == coord1.x && y0 == coord1.y)
+		plot_pixel(fdf, x0, y0, color);
+		if ((x0 == coord1.x || x0 < 0) && (y0 == coord1.y || y0 < 0))
 			break ;
 		e2 = error + 1;
 		if (e2 >= dy && x0 != coord1.x)
@@ -75,13 +67,35 @@ void		bresenham_line(t_fdf *fdf, t_coords coord0, t_coords coord1)
 	// plot_pixel(fdf, x0, y0);	
 }
 
-void		vis_map(t_fdf *fdf, t_coords **coords)
+void		vis_center(t_fdf *fdf)
+{
+	t_coords	coord0;
+	t_coords	coord1;
+
+	coord0.x = fdf->center.x;
+	coord0.y = 0;
+	coord1.x = fdf->center.x;
+	coord1.y = HEIGHT;
+	bresenham_line(fdf, coord0, coord1, 46546);
+	coord0.x = 0;
+	coord0.y = fdf->center.y;
+	coord1.x = WIDTH;
+	coord1.y = fdf->center.y;
+	bresenham_line(fdf, coord0, coord1, 46546);
+
+}
+
+void		vis_map(t_fdf *fdf)
 {
 	int	x;
 	int	y;
+	int color;
+	t_coords **coords;
 
 	x = 0;
 	y = 0;
+	color = 65280;
+	coords = fdf->coords;
 	ft_printf("height = %i width = %i\n", fdf->height, fdf->width);
 	while (y < fdf->height)
 	{
@@ -89,12 +103,13 @@ void		vis_map(t_fdf *fdf, t_coords **coords)
 		while (x < fdf->width)
 		{
 			if (x != fdf->width - 1)
-				bresenham_line(fdf, coords[y][x], coords[y][x + 1]);
+				bresenham_line(fdf, coords[y][x],coords[y][x + 1], color);
 			if (y != fdf->height - 1)
-				bresenham_line(fdf, coords[y][x], coords[y + 1][x]);
+				bresenham_line(fdf, coords[y][x], coords[y + 1][x], color);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image, 75, 75);
+	vis_center(fdf);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->image, 0, 0);
 }
