@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:07:48 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/23 15:58:24 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:36:43 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ t_fdf	*setup_fdf(t_coords sizes, t_coords **coords)
 	fdf->up_down = 0.0f;
 	fdf->left_right = 0.0f;
 	fdf->coords = coords;
+	fdf->zoom = 1;
 	return (fdf);
 }

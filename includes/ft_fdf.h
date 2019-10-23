@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:03:40 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/23 16:23:46 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:39:04 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_fdf
 	int			endian;
 	int			height;
 	int			width;
+	float		zoom;
 	t_coords	center;
 	t_coords	**coords;
 	float		up_down;

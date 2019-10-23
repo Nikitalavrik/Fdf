@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:07:46 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/23 15:58:45 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:37:04 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		main(int argc, char **argv)
 	coords = parse_file(&sizes, argv[1]);
 	fdf = setup_fdf(sizes, coords);
 	coords = rerange_coords(fdf, coords, sizes);
-	change_view(fdf, fdf->coords);
+	// change_view(fdf, fdf->coords);
 	vis_map(fdf);
 	mlx_key_hook(fdf->win, &catch_key, fdf);
 	mlx_loop(fdf->mlx);
