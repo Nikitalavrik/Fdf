@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:58:23 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/23 17:36:21 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:35:07 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,31 +30,23 @@ void	rot_x(t_fdf *fdf, t_coords *coord)
 	coord->z = -(y - fdf->center.y) * sin(fdf->up_down) + coord->z * cos(fdf->up_down);
 }
 
-void	zoom_it(t_fdf *fdf, t_coords *coord)
-{
-	coord->x *= fdf->zoom;
-	coord->y *= fdf->zoom;
-	coord->z *= fdf->zoom;
-}
-
 void	change_view(t_fdf *fdf, t_coords **coords, int key)
 {
 	int	x;
 	int	y;
 
-	ft_printf("center %i %i\n", fdf->center.x, fdf->center.y);
+	// ft_printf("center %i %i\n", fdf->center.x, fdf->center.y);
 	y = 0;
+	key = 0;
 	while (y < fdf->height)
 	{
 		x = 0;
 		while (x < fdf->width)
 		{
-			if (key == 125 || key == 126)
+			// if (key == 125 || key == 126 || key == 34)
 				rot_x(fdf, &coords[y][x]);
-			if (key == 123 || key == 124)
+			// if (key == 123 || key == 124 || key == 34)
 				rot_y(fdf, &coords[y][x]);
-			if (key == 69 || key == 78)
-				zoom_it(fdf, &coords[y][x]);
 			x++;
 		}
 		y++;

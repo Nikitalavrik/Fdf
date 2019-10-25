@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:07:53 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 19:11:39 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/25 17:35:50 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_coords		**put_coords(t_coords **coords, char **splited, int y, int size)
 		coords[y][x].x = x;
 		coords[y][x].y = y;
 		coords[y][x].z = ft_atoi(splited[x]);
+		coords[y][x].prev_z = coords[y][x].z;
 		x++;
 	}
 	free_splited(splited, size);

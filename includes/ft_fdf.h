@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:03:40 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/23 17:39:04 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/25 18:59:04 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct	s_coords
 	int		x;
 	int		y;
 	int		z;
+	int		prev_z;
 }				t_coords;
 
 typedef struct	s_fdf
@@ -39,6 +40,9 @@ typedef struct	s_fdf
 	int			endian;
 	int			height;
 	int			width;
+	int			padding_x;
+	int			padding_y;
+	t_coords	size;
 	float		zoom;
 	t_coords	center;
 	t_coords	**coords;
