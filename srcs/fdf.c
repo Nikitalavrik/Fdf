@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:07:48 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/25 17:36:32 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:41:56 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_coords	**rerange_coords(t_fdf *fdf, t_coords **coords, t_coords sizes)
 	return (coords);
 }
 
-t_fdf	*setup_fdf(t_coords sizes, t_coords **coords)
+t_fdf		*setup_fdf(t_coords sizes, t_coords **coords)
 {
 	t_fdf *fdf;
 

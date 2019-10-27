@@ -6,7 +6,7 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 14:47:54 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 14:50:56 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:52:44 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	print_coords(t_coords **coords, int max_y, int max_x)
 {
 	int	x;
 	int	y;
-
 
 	y = 0;
 	while (y < max_y)

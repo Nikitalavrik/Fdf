@@ -6,13 +6,13 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 15:17:09 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/22 15:17:50 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:52:24 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
 
-int			split_len(char **splited)
+int				split_len(char **splited)
 {
 	int	count;
 

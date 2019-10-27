@@ -6,13 +6,13 @@
 /*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 15:07:53 by nlavrine          #+#    #+#             */
-/*   Updated: 2019/10/25 17:35:50 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/27 16:00:10 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_fdf.h"
 
-int		check_file(int	fd)
+int				check_file(int fd)
 {
 	char	*line;
 	int		size;
@@ -39,6 +39,8 @@ t_coords		**put_coords(t_coords **coords, char **splited, int y, int size)
 		coords[y][x].x = x;
 		coords[y][x].y = y;
 		coords[y][x].z = ft_atoi(splited[x]);
+		if (coords[y][x].z > INT16_MAX || coords[y][x].z < INT16_MIN)
+			print_error("Too big z coord\n");
 		coords[y][x].prev_z = coords[y][x].z;
 		x++;
 	}
@@ -46,18 +48,15 @@ t_coords		**put_coords(t_coords **coords, char **splited, int y, int size)
 	return (coords);
 }
 
-t_coords	**check_lines(int fd, int size, int	*in_line)
+t_coords		**check_lines(int fd, int *in_line,
+									t_coords **coords, char *line)
 {
-	char		*line;
 	char		**splited;
-	t_coords	**coords;
 	int			coords_in_line;
 	int			i;
 
-	line = NULL;
-	*in_line = 0;
 	i = 0;
-	coords = ft_memalloc(sizeof(t_coords *) * (size + 1));
+	*in_line = 0;
 	while (get_next_line(fd, &line) == 1)
 	{
 		splited = ft_strsplit(line, ' ');
@@ -79,16 +78,21 @@ t_coords	**check_lines(int fd, int size, int	*in_line)
 	return (coords);
 }
 
-t_coords	**parse_file(t_coords *size, char *filename)
+t_coords		**parse_file(t_coords *size, char *filename)
 {
 	int			fd;
-	t_coords 	**coords;
+	char		*line;
+	t_coords	**coords;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		print_error("Something wrong with file\n");
 	size->y = check_file(fd);
+	if (!size->y)
+		print_error("Empty file\n");
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		print_error("Something wrong with file\n");
-	coords = check_lines(fd, size->y, &size->x);
+	line = NULL;
+	coords = ft_memalloc(sizeof(t_coords *) * (size->y + 1));
+	coords = check_lines(fd, &size->x, coords, line);
 	return (coords);
 }
